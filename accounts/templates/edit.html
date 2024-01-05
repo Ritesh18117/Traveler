@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<div class="album py-5 bg-light">
+    <div class="container shadow">
+        <div class="container py-4">
+            <div class="text-center col-md-12 ">
+                <div class="container my-4 w-100">
+                    <img src="./../../media/{{myPlace.images}}" class="shadow img-fluid" style="height: 500px; width: 600px"
+                        alt="">
+                </div>
+            </div>
+            <div class="container shadow p-4">
+                <h1 class="my-3">Edit Place</h1>
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="placeName">Place name</label>
+                    <input type="text" class="form-control" id="placeName" name="placeName"
+                        placeholder="Enter place name" value="{{myPlace.name}}" required>
+                </div>
+                <div class="form-group my-4">
+                    <select class="form-select" name="placeType" aria-label="Default select example">
+                        <option value="Mountain" selected>Mountain</option>
+                        <option value="Desert">Temples</option>
+                        <option value="Beaches">Beaches</option>
+                        <option value="Desert">Desert</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" value="{{myPlace.address}}" id="address" name="address" placeholder="Enter Address"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="5"
+                        placeholder="Description">{{myPlace.description}}</textarea>
+                </div>
+                <div>
+                    <div class="my-3">
+                        <label for="image">Select image</label>
+                    </div>
+                    <div class="custom-file w-50">
+                        <input type="file" id="image" name="image" accept="image/png, image/jpeg" class="custom-file-input" value="C:\Users\lenovo\OneDrive\Desktop\Web Devs\Django\Travel\media\{{myPlace.images}}">
+                        <label class="custom-file-label" for="image"> {{ myPlace.images }} </label>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="mx-2 btn btn-primary my-3">Submit</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

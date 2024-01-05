@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<div class="container shadow">
+    <div class="col-md-12 py-4 my-3">
+        <div class="text-center container my-4 w-100">
+            <img src="./../../media/{{myPlace.images}}" class="shadow img-fluid" style="height: 500px; width: 600px"
+                alt="">
+        </div>
+        <div class="container">
+            <h2 class="my-4">{{myPlace.name}}</h2>
+            <h5 class="my-4">Address : {{myPlace.address}}</h5>
+            <h5>Place Type : {{myPlace.place_type}}</h5>
+            <p class="my-4"> <h5>Description:</h5>
+                {{myPlace.description}}
+            </p>
+        </div>
+        {% if request.user.is_anonymous == False %}
+        <div class="shadow-sm py-4 container-fluid my-5">
+            <h2 class="mx-2">Add Review</h2>
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <fieldset class="mx-2 starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+
+                <div class="form-group mx-2">
+                    <label for="review">Review: </label>
+                    <textarea class="form-control" id="review" name="review" rows="3" placeholder="Enter you review"></textarea>
+                </div>
+                <div class="form-group mx-3">
+                    <label for="images">Example file input</label>
+                    <input type="file" class="form-control-file" id="images" name="images" multiple>
+                </div>
+                <button type="submit" class="mx-2 btn btn-sm btn-secondary my-3">Submit</button>
+            </form>
+        </div>
+        {% endif %}
+        <div class="container-fluid">
+            <h3 class="my-3">Reviews:</h3>
+            <div class="shadow-sm container-fluid">
+                <h5>Name of Commentor</h5>
+                <p class="starability-result" data-rating="3"></p>
+                <div class="container-fluid">Comments</div>
+                <div class="container-fluid">
+                    Images that was uploaded in Comments
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

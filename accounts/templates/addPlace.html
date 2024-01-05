@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<div class="container shadow my-5 py-2">
+    <div class="container">
+        <div class=" my-4 container d-flex justify-content-center align-items-center">
+            <img src="https://images.unsplash.com/photo-1673200219581-ebb8c14b8df5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&h=600&w=1332&q=80" class="d-block w-100" alt="...">
+        </div>
+        <h1 class="my-3">Add Place</h1>
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+            <div class="form-group">
+              <label for="placeName">Place Name</label>
+              <input type="text" class="form-control" id="placeName" name="placeName" placeholder="Enter place name" required>
+            </div>
+            <div class="form-group my-4">
+              <select class="form-select" name="placeType" aria-label="Default select example">
+                <option value="Mountain" selected>Mountain</option>
+                <option value="Desert">Temples</option>
+                <option value="Beaches">Beaches</option>
+                <option value="Desert">Desert</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
+              </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" name="description" rows="5" placeholder="Description"></textarea>
+            </div>
+            <div>
+              <div class="my-3">
+                <label for="image">Select image</label>
+              </div>
+              <div class="custom-file w-50">
+                <input type="file" class="custom-file-input" id="image" name="image">
+                <label class="custom-file-label" for="image">Choose file</label>
+              </div>
+            </div>
+            <br>
+            <button type="submit" class="mx-2 btn btn-primary my-3">Submit</button>
+          </form>
+    </div>
+</div>
+{% endblock body %}
